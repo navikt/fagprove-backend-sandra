@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+**/build/
+coverage/
+out/
+*.class
+*.tsbuildinfo
+
+# Runtime / logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Caches / temp
+.cache/
+tmp/
+.nyc_output/
+.eslintcache
+.gradle/
+
+# Local databases / runtime storage
+*.sqlite
+*.sqlite3
+*.db
+uploads/
+storage/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.iml
+*.swp
+*~
+
+# Keep placeholder files if used
+!.gitkeep
