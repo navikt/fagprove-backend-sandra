@@ -9,11 +9,11 @@ fun behandleSoknad(soknad: Soknad, grunnbelop: Int): Vedtak {
 
     val stonadsperiodeUker = stonadsperiode(soknad)
 
-    // TODO: regel 5 – kvotefordeling
+    val kvoter = kvotefordeling(soknad, stonadsperiodeUker)
 
     return Vedtak.Innvilget(
         beregningsgrunnlag = beregningsgrunnlag,
         stonadsperiodeUker = stonadsperiodeUker,
-        kvoter = Kvoter(0, 0, 0, 0, 0),
+        kvoter = kvoter,
     )
 }
