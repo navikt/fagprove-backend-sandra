@@ -7,12 +7,13 @@ fun behandleSoknad(soknad: Soknad, grunnbelop: Int): Vedtak {
 
     val beregningsgrunnlag = beregningsgrunnlag(soknad, grunnbelop) ?: return Vedtak.ManuellVurdering
 
-    // TODO: regel 4 – stønadsperiode
+    val stonadsperiodeUker = stonadsperiode(soknad)
+
     // TODO: regel 5 – kvotefordeling
 
     return Vedtak.Innvilget(
         beregningsgrunnlag = beregningsgrunnlag,
-        stonadsperiodeUker = 0,
+        stonadsperiodeUker = stonadsperiodeUker,
         kvoter = Kvoter(0, 0, 0, 0, 0),
     )
 }
