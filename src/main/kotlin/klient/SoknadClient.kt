@@ -1,4 +1,6 @@
-package com.example
+package com.example.klient
+
+import com.example.modell.Soknad
 
 import io.ktor.client.*
 import io.ktor.client.call.*

@@ -1,5 +1,6 @@
 package com.example
 
+import com.example.modell.BehandletSoknad
 import io.ktor.client.call.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
@@ -20,8 +21,8 @@ class SoknadTest {
         assertEquals(HttpStatusCode.OK, response.status)
         assertEquals(ContentType.Application.Json, response.contentType()?.withoutParameters())
 
-        val soknader = response.body<List<Soknad>>()
-        assertTrue(soknader.isNotEmpty(), "Burde returnere minst én søknad")
+        val resultat = response.body<List<BehandletSoknad>>()
+        assertTrue(resultat.isNotEmpty(), "Burde returnere minst én søknad")
     }
 
     @Test
@@ -30,8 +31,8 @@ class SoknadTest {
         val client = createClient {
             install(ContentNegotiation) { json() }
         }
-        val soknader = client.get("/api/soknader").body<List<Soknad>>()
-        val soknad = soknader.first()
+        val resultat = client.get("/api/soknader").body<List<BehandletSoknad>>()
+        val soknad = resultat.first().soknad
 
         assertTrue(soknad.id.isNotBlank())
         assertTrue(soknad.fnr.length == 11)

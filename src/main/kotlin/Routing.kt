@@ -1,5 +1,9 @@
 package com.example
 
+import com.example.klient.hentGrunnbelop
+import com.example.klient.hentSoknader
+import com.example.modell.BehandletSoknad
+import com.example.regler.behandleSoknad
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.contentnegotiation.*
@@ -12,13 +16,18 @@ fun Application.configureRouting() {
     }
 
     routing {
-        get("/") {
-            call.respondText("Hello, World!")
-        }
-
         get("/api/soknader") {
             val soknader = hentSoknader()
-            call.respond(soknader)
+            val grunnbelop = hentGrunnbelop()
+
+            val behandledeSoknader = soknader.map { soknad ->
+                BehandletSoknad(
+                    soknad = soknad,
+                    vedtak = behandleSoknad(soknad, grunnbelop),
+                )
+            }
+
+            call.respond(behandledeSoknader)
         }
     }
 }

@@ -1,11 +1,27 @@
-package com.example
+package com.example.modell
 
 import kotlinx.serialization.Serializable
 
 @Serializable
+enum class Inntektstype {
+    ARBEID,
+    SYKEPENGER,
+    FORELDREPENGER,
+    SVANGERSKAPSPENGER,
+    DAGPENGER,
+    AAP,
+    PLEIEPENGER,
+    STIPEND_LANEKASSEN;
+
+    fun erGodkjent(): Boolean {
+        return this != STIPEND_LANEKASSEN
+    }
+}
+
+@Serializable
 data class Inntekt(
     val maned: String,
-    val type: String,
+    val type: Inntektstype,
     val belop: Int,
 )
 
