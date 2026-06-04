@@ -5,7 +5,7 @@ import com.example.modell.*
 fun behandleSoknad(soknad: Soknad, grunnbelop: Int): Vedtak {
     vilkarsvurdering(soknad, grunnbelop)?.let { return it }
 
-    val beregningsgrunnlag = beregningsgrunnlag(soknad, grunnbelop) ?: return Vedtak.ManuellVurdering
+    val beregningsgrunnlag = beregningsgrunnlag(soknad, grunnbelop) ?: return Vedtak.ManuellVurdering("Beregnet inntekt avviker mer enn 25% fra oppgitt inntekt")
 
     val stonadsperiodeUker = stonadsperiode(soknad)
 

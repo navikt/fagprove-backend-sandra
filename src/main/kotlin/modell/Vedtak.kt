@@ -17,15 +17,15 @@ sealed class Vedtak {
 
     @Serializable
     @SerialName("Avslag")
-    data object Avslag : Vedtak()
+    data class Avslag(val begrunnelse: String) : Vedtak()
 
     @Serializable
     @SerialName("Engangsstonad")
-    data object Engangsstonad : Vedtak()
+    data class Engangsstonad(val begrunnelse: String, val belop: Int) : Vedtak()
 
     @Serializable
     @SerialName("ManuellVurdering")
-    data object ManuellVurdering : Vedtak()
+    data class ManuellVurdering(val begrunnelse: String) : Vedtak()
 
     @Serializable
     @SerialName("Innvilget")
