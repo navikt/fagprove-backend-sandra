@@ -56,4 +56,15 @@ class KvotefordelingTest {
         assertEquals(0, kvoter.forhandskvote)
         assertEquals(0, kvoter.fellesperiode)
     }
+
+    // Feilende test
+    @Test
+    fun `kun-far far alle uker 2 barn`() {
+        val kvoter = kvotefordeling(lagSoknad(rettsforhold = "kun-far", antallBarn = 2), 40)
+        assertEquals(0, kvoter.modrekvote)
+        assertEquals(40, kvoter.fedrekvote)
+        assertEquals(0, kvoter.forhandskvote)
+        assertEquals(0, kvoter.fellesperiode)
+        assertEquals(17, kvoter.flerbarnsbonus)
+    }
 }
